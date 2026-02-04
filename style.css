@@ -1,0 +1,254 @@
+:root {
+    --bg-color: #000000;
+    --card-bg: #1e1e1e;
+    --text-color: #ffffff;
+    --accent-color: #3e6AE1; /* Tesla Blue-ish */
+    --hover-bg: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevent scrolling if possible */
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.badge {
+    font-size: 0.8rem;
+    background-color: var(--accent-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.subtitle {
+    color: #888;
+    font-size: 1rem;
+}
+
+/* App Grid */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    margin-bottom: 40px;
+}
+
+.driving-mode-banner {
+    grid-column: 1 / -1;
+    width: 100%;
+    background: rgba(62, 106, 225, 0.1);
+    border: 1px dashed var(--accent-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.driving-mode-banner:hover {
+    background: rgba(62, 106, 225, 0.2);
+}
+
+.app-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.app-card:active {
+    transform: scale(0.95);
+}
+
+.app-card:hover {
+    background-color: var(--hover-bg);
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Input Card Special Styling */
+.input-card {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    flex-direction: row;
+    gap: 10px;
+}
+
+input[type="text"] {
+    background: #333;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    color: white;
+    flex-grow: 1;
+    font-size: 1rem;
+}
+
+button {
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:active {
+    opacity: 0.8;
+}
+
+button.secondary {
+    background-color: #555;
+}
+
+footer {
+    color: #555;
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
+.settings-toggle {
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Lock Screen Overlay */
+.lock-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999; /* Highest priority */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s;
+}
+
+.lock-content {
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
+.pin-input-container {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.pin-input-container input {
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+}
+
+.error-msg {
+    color: #ff4444;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: left;
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+}
+
+.modal-content input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}

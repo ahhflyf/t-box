@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tesla 全屏 Theater (腾讯视频版)</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+    <!-- Security Lock Screen -->
+    <div id="lock-screen" class="lock-overlay">
+        <div class="lock-content">
+            <h2>🔒 安全访问</h2>
+            <p>请输入访问密码 (默认: 8888)</p>
+            <div class="pin-input-container">
+                <input type="password" id="pin-input" maxlength="6" placeholder="PIN" onkeyup="checkPin(event)">
+                <button onclick="unlockApp()">解锁</button>
+            </div>
+            <p id="pin-error" class="error-msg hidden">密码错误</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Tesla Theater <span class="badge">Tencent Mod</span></h1>
+            <p class="subtitle">全屏/行进中观看入口 (基于腾讯视频跳转)</p>
+        </header>
+
+        <main class="app-grid">
+            <!-- Driving Mode Instructions -->
+            <div class="driving-mode-banner" onclick="toggleDrivingGuide()">
+                🚗 如何在行进中让副驾观看？(点击查看指南)
+            </div>
+            
+            <!-- Bilibili -->
+            <div class="app-card" onclick="launchApp('https://www.bilibili.com')">
+                <div class="icon" style="background-color: #fb7299;">B</div>
+                <div class="name">Bilibili</div>
+            </div>
+
+            <!-- YouTube -->
+            <div class="app-card" onclick="launchApp('https://www.youtube.com')">
+                <div class="icon" style="background-color: #ff0000;">Y</div>
+                <div class="name">YouTube</div>
+            </div>
+
+            <!-- TikTok/Douyin -->
+            <div class="app-card" onclick="launchApp('https://www.douyin.com')">
+                <div class="icon" style="background-color: #000000; border: 1px solid #333;">T</div>
+                <div class="name">抖音</div>
+            </div>
+
+            <!-- Google Maps -->
+            <div class="app-card" onclick="launchApp('https://www.google.com/maps')">
+                <div class="icon" style="background-color: #4285f4;">G</div>
+                <div class="name">Google Maps</div>
+            </div>
+
+            <!-- Plex -->
+            <div class="app-card" onclick="launchApp('https://www.xiaohongshu.com')">
+                <div class="icon" style="background-color: #e5a00d;">S</div>
+                <div class="name">小红书</div>
+            </div>
+
+            <!-- Custom URL -->
+            <div class="app-card input-card">
+                <input type="text" id="custom-url" placeholder="输入网址 (https://...)" />
+                <button onclick="launchCustom()">Go</button>
+            </div>
+        </main>
+
+        <!-- Experimental Controls -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <button class="secondary" onclick="tryForceUnlock()" style="font-size: 0.8rem; padding: 8px 15px;">
+                🔓 尝试强力解锁 (D档黑屏请点我)
+            </button>
+            <p style="font-size: 0.7rem; color: #666; margin-top: 5px;">* 利用浏览器特性尝试绕过，不保证所有版本有效</p>
+        </div>
+
+        <footer>
+            <p>工作原理：利用腾讯视频重定向漏洞/特性触发车载浏览器全屏。</p>
+            <p class="disclaimer">本站点与 Tesla 或 腾讯视频 无关。</p>
+            <div class="settings-toggle" onclick="toggleSettings()">⚙️ 设置重定向链接</div>
+        </footer>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>设置重定向 Base URL</h3>
+            <p>如果默认的腾讯视频跳转链接失效，请在此处更新。</p>
+            <input type="text" id="redirect-base" value="https://v.qq.com/search_redirect.html?url=">
+            <div class="modal-actions">
+                <button onclick="saveSettings()">保存</button>
+                <button class="secondary" onclick="toggleSettings()">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Driving Guide Modal -->
+    <div id="driving-guide-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>行进中观看指南</h3>
+            <p>由于 Tesla 系统限制，直接从浏览器打开在 D 档下会锁定。请尝试以下步骤：</p>
+            <ol style="margin-left: 20px; color: #ccc; line-height: 1.6;">
+                <li>确保车辆处于 P 档。</li>
+                <li>打开车辆设置 -> <b>服务</b> -> <b>用户手册</b>。</li>
+                <li>在用户手册任意页面找到一个外部链接（或者搜索 <code>https</code>）。</li>
+                <li>点击链接打开内置浏览器（此浏览器通常不锁 D 档）。</li>
+                <li>在地址栏输入或从书签打开本站。</li>
+                <li><b>安全提示：</b> 仅供副驾及后排乘客娱乐，驾驶员请勿观看！</li>
+            </ol>
+            <div class="modal-actions" style="margin-top: 20px;">
+                <button onclick="toggleDrivingGuide()">我明白了</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
